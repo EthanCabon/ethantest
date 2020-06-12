@@ -1,21 +1,15 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jun 11 10:30:24 2020
-
-@author: andre
-"""
 import numpy as np
 
-class Matrice_Generator:
+class Matrice_Generates:
     
     def __init_(self, deck):
+        
         self.deck = deck
         self.do_matrice()
         
     
-    def do_matrice():
+    def do_matrice(self):
         
-        self.nx = float(deck.doc["Simulation"]["Time Step"])
         self.lenX = float(deck.doc["Simulation"]["lenX"])
         self.dx =  float(deck.doc["Simulation"]["dx"])             
         self.nx =int(self.lenX/self.dx)
@@ -26,9 +20,6 @@ class Matrice_Generator:
         self.dt = float(self.rho*self.Cp*self.dx**2/(2*self.k*10))              
         self.C1=self.dt*self.D/self.dx**2
         
-        
-        
-      
         
         self.M = np.zeros((self.nx,self.nx))
         Vsup = Vinf = np.ones((self.nx-1,1))*self.C1
