@@ -1,14 +1,25 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jun 11 11:00:27 2020
-
-@author: andre
-"""
-
+from Problem import *
+import os, sys
+import glob
+import matplotlib.pyplot as plt
+import pdb
+from PIL import Image
 
 cwd = os.getcwd()
-#All the data from deck.yaml is now in the following deck variable
+
+print(cwd)
 deck = Deck( cwd + "/data.yaml" )
 
-matrice_generaters=matrice_generates(deck)
-dirichlet=dirichlet(matrice_generator)
+matrice_generates = Matrice_Generates(deck)
+
+boundary = Boundary(deck,matrice_generates)
+
+initial_conditions = initial_conditions(deck, matrice_generates)
+
+solution = Solution(deck, matrice_generates, boundary, initial_conditions)
+
+graph = Graph(matrice_generates,solution)
+
+deformation_calculation = Deformation_Calculation(deck, initial_conditions, solution)
+
+# graph_deformation = Graph_Deformation(matrice_generates, solution, deformation_calculation)
